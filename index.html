@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Hello World!!</title>
+    <title>Serial Port Monitor</title>
     <style>
         table { border-collapse: collapse; }
         table, th, td { border: 1px solid black; }
@@ -11,12 +11,22 @@
 </head>
 
 <body>
-    <h1>Hello World!</h1>
+    <h1>Serial Port Monitor</h1>
 
     We are using Node.js <span id="node-version"></span>, Chromium <span id="chrome-version"></span>, Electron <span id="electron-version"></span>, and Serialport <span id="serialport-version"></span>
 
     <div id="error"></div>
     <div id="ports"></div>
+    
+    <br>
+    
+    <div id="Serial1">Serial read 1:</div>
+    <div id="s1console">000</div>
+
+    <br>
+
+    <div id="Serial2">Serial read 2:</div>
+    <div id="s2console">000</div>
 </body>
 
 <script src="./renderer.js"></script>
