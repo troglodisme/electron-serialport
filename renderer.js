@@ -6,6 +6,8 @@ const { SerialPort } = require('serialport')
 const tableify = require('tableify')
 const {ReadlineParser} = require('@serialport/parser-readline'); //added for clean parsing
 
+
+
 async function listSerialPorts() {
   await SerialPort.list().then((ports, err) => {
     if(err) {
@@ -34,14 +36,9 @@ function testSensor() {
 
   const { SerialPort } = require('serialport');
   const sPort1 = new SerialPort({ path: '/dev/tty.usbmodem11201', baudRate: 9600})
-  
   const sPort2 = new SerialPort({ path: '/dev/tty.usbmodem11401', baudRate: 9600})
 
   const parser1 = sPort1.pipe( new ReadlineParser({  //parser for first arduino
-    delimiter: "\r\n"
-  }));
-
-  const parser2 = sPort2.pipe( new ReadlineParser({  //parser for second arduino
     delimiter: "\r\n"
   }));
   
@@ -51,13 +48,34 @@ function testSensor() {
     document.getElementById('s1console').innerHTML = data
   })
 
+
+
+
+  const parser2 = sPort2.pipe( new ReadlineParser({  //parser for second arduino
+    delimiter: "\r\n"
+  }));
+
   parser2.on('data', function(data) {  
     console.log(data);
 
     document.getElementById('s2console').innerHTML = data
+
+
+    // const canvas = document.getElementById('canvas');
+    
+    // if (canvas.getContext) {
+    //   const ctx = canvas.getContext('2d');
+
+    //   ctx.fillRect(25, 25, data, 100);
+    // }
+
   })
 
+
 }
+
+
+
 
 
 // Set a timeout that will check for new serialPorts every 2 seconds.
@@ -66,3 +84,6 @@ setTimeout(listPorts, 2000);
 
 listSerialPorts();
 testSensor();
+
+
+
